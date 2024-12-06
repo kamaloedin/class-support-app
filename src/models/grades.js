@@ -1,8 +1,8 @@
-const { pool } = require('../config/database');
+const pool = require('../config/database');
 
 const getAllGrades = async () => {
   const query = 'SELECT * FROM grades';
-  const grades = pool.execute(query);
+  const [grades] = await pool.query(query);
 
   return grades;
 };
