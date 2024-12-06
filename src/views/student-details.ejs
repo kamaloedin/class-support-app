@@ -1,0 +1,42 @@
+<div class="card mt-4 mb-3">
+  <div class="card-header bg-gradient bg-success" data-bs-theme="dark">
+    <h2 class="card-title ms-4 text-light">Student Data</h2>
+  </div>
+  <div class="card-body">
+    <div class="container mt-3">
+      <div class="row justify-content-around">
+        <div class="col-md-8">
+          <ul class="list-group list-group-flush fs-6">
+            <li class="list-group-item">NIS : <%= student.id %></li>
+            <li class="list-group-item">Full Name : <%= student.name %></li>
+            <li class="list-group-item">Class : <%= className %></li>
+            <li class="list-group-item">Date of Birth : <%= student.birth_date %></li>
+            <li class="list-group-item">Place of Birth : <%= student.birth_place %></li>
+            <li class="list-group-item">Religion : <%= student.religion %></li>
+            <li class="list-group-item">Address : <%= student.address %></li>
+            <li class="list-group-item">Postal Code : <%= student.postal_code %></li>
+            <li class="list-group-item">Phone : <%= student.phone %></li>
+            <li class="list-group-item">Email : <%= student.email %></li>
+            <li class="list-group-item">Guardian's Name : <%= student.guardian_name %></li>
+            <li class="list-group-item">Guardian's Occupation : <%= student.guardian_name %></li>
+            <li class="list-group-item">Father's Name : <%= student.father_name %></li>
+            <li class="list-group-item">Father's Occupation : <%= student.father_name %></li>
+            <li class="list-group-item">Mother's Name : <%= student.mother_name %></li>
+            <li class="list-group-item">Mother's Occupation : <%= student.mother_name %></li>
+            <li class="list-group-item">Days of Unexplained Absent: <%= student.absence %></li>
+            <li class="list-group-item">Registered On : <%= student.register_date %></li>
+            <li class="list-group-item">Status : <%= student.status %></li>
+          </ul>
+        </div>
+        <div class="col-md-4 text-center">
+          <img
+            src="/img/<%= student.img_file %>"
+            alt="Student Photo"
+            class="img-thumbnail img-thumbnail rounded"
+            width="200"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

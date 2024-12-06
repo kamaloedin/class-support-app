@@ -7,4 +7,11 @@ const getAllClassStudents = async (classId) => {
   return students;
 };
 
-module.exports = { getAllClassStudents };
+const getStudentDetails = async (studentId) => {
+  const query = 'SELECT * FROM students WHERE id = ?';
+  const [student] = await pool.query(query, [studentId]);
+
+  return student[0];
+};
+
+module.exports = { getAllClassStudents, getStudentDetails };
