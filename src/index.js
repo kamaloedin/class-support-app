@@ -5,15 +5,18 @@ const path = require('path');
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 const app = express();
 const port = 4000;
 
 // Routes
+const indexRoutes = require('./routes/index');
 const classRoutes = require('./routes/classes');
 const studentRoutes = require('./routes/students');
 const loginRoutes = require('./routes/login');
 const registerRoutes = require('./routes/register');
+const logoutRoutes = require('./routes/logout');
 
 // Passport Config & Initialization
 const userModel = require('./models/users');
@@ -37,15 +40,14 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 
+app.use('/', indexRoutes);
 app.use('/classes', classRoutes);
 app.use('/students', studentRoutes);
 app.use('/login', loginRoutes);
 app.use('/register', registerRoutes);
-
-app.get('/', (req, res) => {
-  res.render('index', { layout: 'layouts/main-layout', title: 'Class Support App | Home' });
-});
+app.use('/logout', logoutRoutes);
 
 app.listen(port, () => {
   console.log(`App is listening to port ${port}`);
