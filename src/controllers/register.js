@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt');
 const userModel = require('../models/users');
+const employeeModel = require('../models/employees');
 
-const getRegisterHandler = (req, res) => {
-  res.render('register', { layout: 'layouts/login-layout', title: 'Register | Home' });
+const getRegisterHandler = async (req, res) => {
+  const employees = await employeeModel.getAllEmployeeIdNames();
+  res.render('register', { layout: 'layouts/login-layout', title: 'Register | Home', employees });
 };
 
 const postRegisterHandler = async (req, res) => {

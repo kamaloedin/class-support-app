@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 function initialize(passport, getUserByUsername, getUserById) {
   const authenticateUser = async (username, password, done) => {
     const user = await getUserByUsername(username);
+    console.log(user);
     if (user == null) {
       return done(null, false, { message: 'Username or Password Incorrect' });
     }

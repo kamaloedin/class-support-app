@@ -1,5 +1,5 @@
-const getLogoutHandler = (req, res) => {
-  req.logOut();
+const getLogoutHandler = async (req, res) => {
+  await req.logOut();
   res.redirect('/login');
 };
 

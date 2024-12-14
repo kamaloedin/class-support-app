@@ -11,6 +11,7 @@ const getUserByUsername = async (username) => {
 const getUserById = async (id) => {
   const query = 'SELECT * FROM users WHERE id = ?';
   const [user] = await pool.query(query, [id]);
+  console.log(user[0]);
 
   return user[0];
 };

@@ -1,6 +1,5 @@
 const studentModel = require('../models/students');
 const classModel = require('../models/classes');
-const dateFormat = require('../utils/dateFormat');
 
 const getStudentDetailsHandler = async (req, res) => {
   const { studentId } = req.params;
