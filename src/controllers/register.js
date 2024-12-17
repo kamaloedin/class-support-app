@@ -4,7 +4,11 @@ const employeeModel = require('../models/employees');
 
 const getRegisterHandler = async (req, res) => {
   const employees = await employeeModel.getAllEmployeeIdNames();
-  res.render('register', { layout: 'layouts/login-layout', title: 'Register | Home', employees });
+  res.render('register', {
+    layout: 'layouts/login-layout',
+    title: 'Register | Class Support App',
+    employees,
+  });
 };
 
 const postRegisterHandler = async (req, res) => {

@@ -21,7 +21,11 @@ const logoutRoutes = require('./routes/logout');
 // Passport Config & Initialization
 const userModel = require('./models/users');
 const initializePassport = require('./config/passport-config');
-initializePassport(passport, userModel.getUserByUsername, userModel.getUserById);
+initializePassport(
+  passport,
+  userModel.getUserCredentialsByUsername,
+  userModel.getUserCredentialsById,
+);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));

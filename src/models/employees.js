@@ -12,4 +12,10 @@ const getEmployeeNameById = async (id) => {
   return employees[0].name;
 };
 
-module.exports = { getEmployeeNameById, getAllEmployeeIdNames };
+const getEmployeeRoleId = async (id) => {
+  const query = 'SELECT role_id FROM employees WHERE id = ?';
+  const [employees] = await pool.query(query, [id]);
+  return employees[0].role_id;
+};
+
+module.exports = { getEmployeeNameById, getAllEmployeeIdNames, getEmployeeRoleId };

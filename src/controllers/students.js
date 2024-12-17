@@ -25,4 +25,23 @@ const getStudentDetailsHandler = async (req, res) => {
   });
 };
 
-module.exports = { getStudentDetailsHandler };
+const getStudentFormHandler = async (req, res) => {
+  const classes = await classModel.getAllClasses();
+  res.render('add-student-form', {
+    layout: 'layouts/main-layout',
+    title: 'Add Student Form | Class Support App',
+    classes,
+  });
+};
+
+const postStudentHandler = async (req, res) => {
+  try {
+    await studentModel.addStudent(req.body);
+    res.redirect(`/classes/${req.body.classId}`);
+  } catch (error) {
+    console.log(error);
+    res.redirect('students/add-student-form');
+  }
+};
+
+module.exports = { getStudentDetailsHandler, getStudentFormHandler, postStudentHandler };

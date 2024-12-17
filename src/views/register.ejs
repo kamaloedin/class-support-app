@@ -5,7 +5,7 @@
         </div>
         <form action="/register" method="post">
             <label for="empId" class="form-label">Employee ID | Name</label>
-            <select class="form-select mb-3" id="empId" name="empId" aria-label="Default select example" required>
+            <select class="form-select mb-3" id="empId" name="empId" aria-label="register select" required>
                 <option selected>Open this select menu</option>
                 <% employees.forEach(employee => { %>
                     <option value="<%= employee.id %>"><%= employee.id %> | <%= employee.name %></option>
