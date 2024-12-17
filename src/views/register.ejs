@@ -4,6 +4,15 @@
             <h1 class=" fw-bold">Register New User</h1>
         </div>
         <form action="/register" method="post">
+            <% if (typeof validationErrors != 'undefined') { %>
+                <div class="alert alert-danger" role="alert">
+                  <ul>
+                    <% validationErrors.forEach(error => { %>
+                    <li><%= error.msg %></li>
+                    <% }) %>
+                  </ul>
+                </div>
+                <% } %>
             <label for="empId" class="form-label">Employee ID | Name</label>
             <select class="form-select mb-3" id="empId" name="empId" aria-label="register select" required>
                 <option selected>Open this select menu</option>
@@ -13,7 +22,7 @@
               </select>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input type="text" class="form-control" id="username" name="username" min="6" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
@@ -26,6 +35,5 @@
             </div>
             <button type="submit" class="btn btn-primary mb-3">Register</button>
         </form>
-        <a href="/login" class="text-white ">Login</a>
     </div>
 </div>

@@ -1,5 +1,6 @@
 const studentModel = require('../models/students');
 const classModel = require('../models/classes');
+const { validationResult } = require('express-validator');
 
 const getStudentDetailsHandler = async (req, res) => {
   const { studentId } = req.params;
@@ -35,12 +36,23 @@ const getStudentFormHandler = async (req, res) => {
 };
 
 const postStudentHandler = async (req, res) => {
-  try {
-    await studentModel.addStudent(req.body);
-    res.redirect(`/classes/${req.body.classId}`);
-  } catch (error) {
-    console.log(error);
-    res.redirect('students/add-student-form');
+  const classes = await classModel.getAllClasses();
+  const validationErrors = validationResult(req);
+  if (validationErrors.isEmpty()) {
+    try {
+      await studentModel.addStudent(req.body);
+      res.redirect(`/classes/${req.body.classId}`);
+    } catch (e) {
+      console.log(e);
+      res.redirect('students/add-student-form');
+    }
+  } else {
+    res.render('add-student-form', {
+      layout: 'layouts/main-layout',
+      title: 'Add Student Form | Class Support App',
+      classes,
+      validationErrors: validationErrors.array(),
+    });
   }
 };
 
