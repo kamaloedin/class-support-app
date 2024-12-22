@@ -1,5 +1,16 @@
 const pool = require('../config/database');
 
+const getAllStudents = async () => {
+  const query = `SELECT students.id, students.name, students.class_id, classes.name AS class_name
+                  FROM students
+                  INNER JOIN classes
+                  ON students.class_id = classes.id
+                  ORDER BY class_id, name`;
+  const [students] = await pool.query(query);
+
+  return students;
+};
+
 const getAllClassStudents = async (classId) => {
   const query = 'SELECT id, name FROM students WHERE class_id = ?';
   const [students] = await pool.query(query, [classId]);
@@ -53,4 +64,34 @@ const addStudent = async (payload) => {
   ]);
 };
 
-module.exports = { getAllClassStudents, getStudentDetails, addStudent };
+const updateStudent = async (payload) => {
+  const query = `UPDATE students 
+                  SET name = ?, class_id = ?, birth_date = ?, birth_place = ?, religion = ?, address = ?, postal_code = ?,phone = ?, email = ?, guardian_name = ?, guardian_occupation = ?, father_name = ?, father_occupation  = ?, mother_name = ?, guardian_occupation = ? WHERE id = ?`;
+
+  await pool.query(query, [
+    payload.name,
+    payload.classId,
+    payload.birthDate,
+    payload.birthPlace,
+    payload.religion,
+    payload.address,
+    payload.postalCode,
+    payload.phone,
+    payload.email,
+    payload.guardianName || '',
+    payload.guardianOccupation || '',
+    payload.fatherName,
+    payload.fatherOccupation,
+    payload.motherName,
+    payload.motherOccupation,
+    payload.id,
+  ]);
+};
+
+module.exports = {
+  getAllStudents,
+  getAllClassStudents,
+  getStudentDetails,
+  addStudent,
+  updateStudent,
+};

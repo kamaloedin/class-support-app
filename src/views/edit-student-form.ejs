@@ -1,0 +1,94 @@
+<div class="card mt-4 mb-3">
+  <div class="card-header bg-gradient bg-success" data-bs-theme="dark">
+    <h2 class="card-title ms-4 text-light">Add-Student Form</h2>
+  </div>
+  <div class="card-body">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-8">
+            <form action="/students?_method=PUT" method="post">
+                <% if (typeof validationErrors != 'undefined') { %>
+                    <div class="alert alert-danger" role="alert">
+                      <ul>
+                        <% validationErrors.forEach(error => { %>
+                        <li><%= error.msg %></li>
+                        <% }) %>
+                      </ul>
+                    </div>
+                <% } %>
+                <div class="mb-3">
+                    <label for="id" class="form-label">NIS</label>
+                    <input type="text" class="form-control-plaintext bg-gradient bg-body-secondary rounded ps-3" id="id" name="id" value="<%= student.id %>" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= student.name %>">
+                </div>
+                <label for="classId" class="form-label">Class</label>
+                <select class="form-select mb-3" id="classId" name="classId" aria-label="Class select" required>
+                    <option>Choose class</option>
+                    <% classes.forEach(class1 => { %>
+                        <option value="<%= class1.id %>" <% if (class1.id === student.class_id) { %> selected <% } %>>
+                            <%= class1.name %>
+                        </option>
+                    <% }) %>
+                 </select>
+                <div class="mb-3">
+                    <label for="birthDate" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="birthDate" name="birthDate" value="<%= student.birth_date %>">
+                </div>
+                <div class="mb-3">
+                    <label for="birthPlace" class="form-label">Place of Birth</label>
+                    <input type="text" class="form-control" id="birthPlace" name="birthPlace" value="<%= student.birth_place %>">
+                </div>
+                <div class="mb-3">
+                    <label for="religion" class="form-label">Religion</label>
+                    <input type="text" class="form-control" id="religion" name="religion" value="<%= student.religion %>">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" value="<%= student.address %>">
+                </div>
+                <div class="mb-3">
+                    <label for="postalCode" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" id="postalCode" name="postalCode" value="<%= student.postal_code %>">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="<%= student.phone %>">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" value="<%= student.email %>">
+                </div>
+                <div class="mb-3">
+                    <label for="guardianName" class="form-label">Guardian's Name</label>
+                    <input type="text" class="form-control" id="guardianName" name="guardianName" value="<%= student.guardian_name %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="guardianOccupation" class="form-label">Guardian's Occupation</label>
+                    <input type="text" class="form-control" id="guardianOccupation" name="guardianOccupation" value="<%= student.guardian_occupation %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fatherName" class="form-label">Father's Name</label>
+                    <input type="text" class="form-control" id="fatherName" name="fatherName" value="<%= student.father_name %>">
+                </div>
+                <div class="mb-3">
+                    <label for="fatherOccupation" class="form-label">Father's Occupation</label>
+                    <input type="text" class="form-control" id="fatherOccupation" name="fatherOccupation" value="<%= student.father_occupation %>">
+                </div>
+                <div class="mb-3">
+                    <label for="motherName" class="form-label">Mother's Name</label>
+                    <input type="text" class="form-control" id="motherName" name="motherName" value="<%= student.mother_name %>">
+                </div>
+                <div class="mb-3">
+                    <label for="motherOccupation" class="form-label">Mother's Occupation</label>
+                    <input type="text" class="form-control" id="motherOccupation" name="motherOccupation"  value="<%= student.mother_occupation %>">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
