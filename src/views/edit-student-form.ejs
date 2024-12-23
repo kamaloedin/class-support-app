@@ -1,11 +1,11 @@
 <div class="card mt-4 mb-3">
   <div class="card-header bg-gradient bg-success" data-bs-theme="dark">
-    <h2 class="card-title ms-4 text-light">Add-Student Form</h2>
+    <h2 class="card-title ms-4 text-light">Edit-Student Form</h2>
   </div>
   <div class="card-body">
-    <div class="container mt-3">
+    <div class="container-sm mt-3 ">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 ">
             <form action="/students?_method=PUT" method="post">
                 <% if (typeof validationErrors != 'undefined') { %>
                     <div class="alert alert-danger" role="alert">
@@ -24,8 +24,8 @@
                     <label for="name" class="form-label">Full Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="<%= student.name %>">
                 </div>
-                <label for="classId" class="form-label">Class</label>
-                <select class="form-select mb-3" id="classId" name="classId" aria-label="Class select" required>
+                <label for="class_id" class="form-label">Class</label>
+                <select class="form-select mb-3" id="class_id" name="class_id" aria-label="Class select" required>
                     <option>Choose class</option>
                     <% classes.forEach(class1 => { %>
                         <option value="<%= class1.id %>" <% if (class1.id === student.class_id) { %> selected <% } %>>
@@ -34,12 +34,12 @@
                     <% }) %>
                  </select>
                 <div class="mb-3">
-                    <label for="birthDate" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control" id="birthDate" name="birthDate" value="<%= student.birth_date %>">
+                    <label for="birth_date" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="birth_date" name="birth_date" value="<%= student.birth_date %>">
                 </div>
                 <div class="mb-3">
-                    <label for="birthPlace" class="form-label">Place of Birth</label>
-                    <input type="text" class="form-control" id="birthPlace" name="birthPlace" value="<%= student.birth_place %>">
+                    <label for="birth_place" class="form-label">Place of Birth</label>
+                    <input type="text" class="form-control" id="birth_place" name="birth_place" value="<%= student.birth_place %>">
                 </div>
                 <div class="mb-3">
                     <label for="religion" class="form-label">Religion</label>
@@ -50,8 +50,8 @@
                     <input type="text" class="form-control" id="address" name="address" value="<%= student.address %>">
                 </div>
                 <div class="mb-3">
-                    <label for="postalCode" class="form-label">Postal Code</label>
-                    <input type="text" class="form-control" id="postalCode" name="postalCode" value="<%= student.postal_code %>">
+                    <label for="postal_code" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" id="postal_code" name="postal_code" value="<%= student.postal_code %>">
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone</label>
@@ -62,28 +62,28 @@
                     <input type="text" class="form-control" id="email" name="email" value="<%= student.email %>">
                 </div>
                 <div class="mb-3">
-                    <label for="guardianName" class="form-label">Guardian's Name</label>
-                    <input type="text" class="form-control" id="guardianName" name="guardianName" value="<%= student.guardian_name %>" required>
+                    <label for="guardian_name" class="form-label">Guardian's Name</label>
+                    <input type="text" class="form-control" id="guardian_name" name="guardian_name" value="<%= student.guardian_name %>" required>
                 </div>
                 <div class="mb-3">
-                    <label for="guardianOccupation" class="form-label">Guardian's Occupation</label>
-                    <input type="text" class="form-control" id="guardianOccupation" name="guardianOccupation" value="<%= student.guardian_occupation %>" required>
+                    <label for="guardian_occupation" class="form-label">Guardian's Occupation</label>
+                    <input type="text" class="form-control" id="guardian_occupation" name="guardian_occupation" value="<%= student.guardian_occupation %>" required>
                 </div>
                 <div class="mb-3">
-                    <label for="fatherName" class="form-label">Father's Name</label>
-                    <input type="text" class="form-control" id="fatherName" name="fatherName" value="<%= student.father_name %>">
+                    <label for="father_name" class="form-label">Father's Name</label>
+                    <input type="text" class="form-control" id="father_name" name="father_name" value="<%= student.father_name %>">
                 </div>
                 <div class="mb-3">
-                    <label for="fatherOccupation" class="form-label">Father's Occupation</label>
-                    <input type="text" class="form-control" id="fatherOccupation" name="fatherOccupation" value="<%= student.father_occupation %>">
+                    <label for="father_occupation" class="form-label">Father's Occupation</label>
+                    <input type="text" class="form-control" id="father_occupation" name="father_occupation" value="<%= student.father_occupation %>">
                 </div>
                 <div class="mb-3">
-                    <label for="motherName" class="form-label">Mother's Name</label>
-                    <input type="text" class="form-control" id="motherName" name="motherName" value="<%= student.mother_name %>">
+                    <label for="mother_name" class="form-label">Mother's Name</label>
+                    <input type="text" class="form-control" id="mother_name" name="mother_name" value="<%= student.mother_name %>">
                 </div>
                 <div class="mb-3">
-                    <label for="motherOccupation" class="form-label">Mother's Occupation</label>
-                    <input type="text" class="form-control" id="motherOccupation" name="motherOccupation"  value="<%= student.mother_occupation %>">
+                    <label for="mother_occupation" class="form-label">Mother's Occupation</label>
+                    <input type="text" class="form-control" id="mother_occupation" name="mother_occupation"  value="<%= student.mother_occupation %>">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

@@ -24,6 +24,7 @@ const getClassDetailsHandler = async (req, res) => {
     title: `${className} | Class Support App`,
     students,
     className,
+    msg: req.flash('msg'),
   });
 };
 

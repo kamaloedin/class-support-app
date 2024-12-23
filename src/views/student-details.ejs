@@ -1,10 +1,31 @@
-<div class="card mt-4 mb-3">
-  <div class="card-header bg-gradient bg-success" data-bs-theme="dark">
-    <h2 class="card-title ms-4 text-light">Student Data</h2>
+<% if (msg.length !== 0) { %>
+  <div id="popup" class="alert alert-success alert-dismissible fade show mt-3 d-flex align-items-center " role="alert">
+    <div>
+      <%= msg %>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-  <div class="card-body">
+<% } %>
+<div class="card mt-4 mb-3 container">
+  <div class="card-header bg-gradient bg-success row align-items-center" data-bs-theme="dark">
+    <h2 class="card-title ms-4 text-light col-md-4">Student Data</h2>
+    <div class="col-md-1 ms-auto text-center">
+      <% if (roleId === 1 ) { %>
+        <a href="/students/edit-student-form/<%= student.id %>" class="btn btn-sm btn-success btn-outline-light rounded">Edit</a>
+      <% } %>
+    </div>
+  </div>
+  <div class="card-body row">
     <div class="container mt-3">
       <div class="row justify-content-around">
+        <div class="col-md-4 text-center">
+          <img
+            src="/img/<%= student.img_file %>"
+            alt="Student Photo"
+            class="img-thumbnail img-thumbnail rounded"
+            width="200"
+          />
+        </div>
         <div class="col-md-8">
           <ul class="list-group list-group-flush fs-6">
             <li class="list-group-item">NIS : <%= student.id %></li>
@@ -27,14 +48,6 @@
             <li class="list-group-item">Registered On : <%= student.register_date %></li>
             <li class="list-group-item">Status : <%= student.status %></li>
           </ul>
-        </div>
-        <div class="col-md-4 text-center">
-          <img
-            src="/img/<%= student.img_file %>"
-            alt="Student Photo"
-            class="img-thumbnail img-thumbnail rounded"
-            width="200"
-          />
         </div>
       </div>
     </div>

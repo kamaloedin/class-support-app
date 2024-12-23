@@ -34,15 +34,19 @@ const getStudentDetailsHandler = async (req, res) => {
     title: 'Student Details | Class Support App',
     student,
     className,
+    roleId: req.user.role_id,
+    msg: req.flash('msg'),
   });
 };
 
 const getAddStudentFormHandler = async (req, res) => {
   const classes = await classModel.getAllClasses();
+  const student = {};
   res.render('add-student-form', {
     layout: 'layouts/main-layout',
     title: 'Add Student Form | Class Support App',
     classes,
+    student,
   });
 };
 
@@ -52,16 +56,23 @@ const postStudentHandler = async (req, res) => {
   if (validationErrors.isEmpty()) {
     try {
       await studentModel.addStudent(req.body);
-      res.redirect(`/classes/${req.body.classId}`);
+      req.flash('msg', 'Student has been added');
+      res.redirect(`/classes/${req.body.class_id}`);
     } catch (e) {
       console.log(e);
-      res.redirect('students/add-student-form');
+      res.render('add-student-form', {
+        layout: 'layouts/main-layout',
+        title: 'Add Student Form | Class Support App',
+        classes,
+        student: req.body,
+      });
     }
   } else {
     res.render('add-student-form', {
       layout: 'layouts/main-layout',
       title: 'Add Student Form | Class Support App',
       classes,
+      student: req.body,
       validationErrors: validationErrors.array(),
     });
   }
@@ -86,10 +97,16 @@ const putStudentHandler = async (req, res) => {
   if (validationErrors.isEmpty()) {
     try {
       await studentModel.updateStudent(req.body);
-      res.redirect(`/classes/${req.body.classId}`);
+      req.flash('msg', 'Student data has been edited');
+      res.redirect(`/students/${req.body.id}`);
     } catch (e) {
       console.log(e);
-      res.redirect(`students/edit-student-form/${req.body.id}`);
+      res.render('edit-student-form', {
+        layout: 'layouts/main-layout',
+        title: 'Edit Student Form | Class Support App',
+        classes,
+        student: req.body,
+      });
     }
   } else {
     res.render('edit-student-form', {
