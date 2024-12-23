@@ -16,8 +16,6 @@ const getStudentsHandler = async (req, res) => {
 const getStudentDetailsHandler = async (req, res) => {
   const { studentId } = req.params;
   const student = await studentModel.getStudentDetails(studentId);
-  const classId = student.class_id;
-  const className = await classModel.getClassName(classId);
   student.birth_date = student.birth_date.toLocaleDateString('id-ID', {
     day: '2-digit',
     month: 'long',
@@ -33,7 +31,6 @@ const getStudentDetailsHandler = async (req, res) => {
     layout: 'layouts/main-layout',
     title: 'Student Details | Class Support App',
     student,
-    className,
     roleId: req.user.role_id,
     msg: req.flash('msg'),
   });

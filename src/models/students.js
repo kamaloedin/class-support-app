@@ -19,7 +19,11 @@ const getAllClassStudents = async (classId) => {
 };
 
 const getStudentDetails = async (studentId) => {
-  const query = 'SELECT * FROM students WHERE id = ?';
+  const query = `SELECT students.*, classes.name AS class_name
+                  FROM students
+                  INNER JOIN classes
+                  ON students.class_id = classes.id
+                  WHERE students.id = ?`;
   const [student] = await pool.query(query, [studentId]);
 
   return student[0];
