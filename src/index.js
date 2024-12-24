@@ -46,6 +46,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
+app.use('/favicon.ico', express.static('/img/favicon.ico'));
 
 app.use('/', indexRoutes);
 app.use('/classes', classRoutes);
