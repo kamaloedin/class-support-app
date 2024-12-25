@@ -52,6 +52,7 @@ const postStudentHandler = async (req, res) => {
   const validationErrors = validationResult(req);
   if (validationErrors.isEmpty()) {
     try {
+      req.body.img_file = req.file.filename;
       await studentModel.addStudent(req.body);
       req.flash('msg', 'Student has been added');
       res.redirect(`/classes/${req.body.class_id}`);
@@ -93,6 +94,7 @@ const putStudentHandler = async (req, res) => {
   const student = await studentModel.getStudentDetails(req.body.id);
   if (validationErrors.isEmpty()) {
     try {
+      req.body.img_file = req.file.filename;
       await studentModel.updateStudent(req.body);
       req.flash('msg', 'Student data has been edited');
       res.redirect(`/students/${req.body.id}`);

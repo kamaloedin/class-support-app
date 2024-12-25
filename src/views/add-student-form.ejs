@@ -6,7 +6,7 @@
     <div class="container mt-3">
       <div class="row">
         <div class="col-md-8">
-            <form action="/students" method="post">
+            <form action="/students" method="post" enctype="multipart/form-data">
                 <% if (typeof validationErrors != 'undefined') { %>
                     <div class="alert alert-danger" role="alert">
                       <ul>
@@ -84,6 +84,10 @@
                 <div class="mb-3">
                     <label for="mother_occupation" class="form-label">Mother's Occupation</label>
                     <input type="text" class="form-control" id="mother_occupation" name="mother_occupation"  value="<%= student.mother_occupation %>">
+                </div>
+                <div class="mb-3">
+                    <label for="img_file" class="form-label">Student Photo</label>
+                    <input type="file" accept=".jpg, .jpeg, .png" class="form-control" id="img_file" name="img_file"  value="<%= student.img_file %>" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

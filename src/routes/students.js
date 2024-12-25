@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const studentController = require('../controllers/students');
 const authMiddleware = require('../middlewares/auth');
+const multer = require('multer');
 const { check } = require('express-validator');
+const multerStorage = require('../middlewares/multer');
+
+const upload = multer({ storage: multerStorage.studentPhotos });
 
 router.get('/', authMiddleware.checkAuthenticated, studentController.getStudentsHandler);
 
@@ -14,6 +18,7 @@ router.get(
 
 router.post(
   '/',
+  upload.single('img_file'),
   authMiddleware.checkAuthenticated,
   [
     check('id', 'ID must contain at least 4 characters').isString().isLength({ min: 4 }),
@@ -44,6 +49,7 @@ router.get(
 
 router.put(
   '/',
+  upload.single('img_file'),
   authMiddleware.checkAuthenticated,
   [
     check('id', 'ID must contain at least 4 characters').trim().isString().isLength({ min: 4 }),

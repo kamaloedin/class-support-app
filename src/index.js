@@ -7,6 +7,8 @@ const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 
+global.appRoot = path.resolve(__dirname);
+
 const app = express();
 const port = 4000;
 

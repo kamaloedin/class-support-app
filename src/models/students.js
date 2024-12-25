@@ -37,7 +37,6 @@ const addStudent = async (payload) => {
     absence: 0,
     register_date: new Date(),
     status: 'Active',
-    img_file: 'student-kamal.jpg',
   };
 
   const query = `INSERT INTO students VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -70,7 +69,7 @@ const addStudent = async (payload) => {
 
 const updateStudent = async (payload) => {
   const query = `UPDATE students 
-                  SET name = ?, class_id = ?, birth_date = ?, birth_place = ?, religion = ?, address = ?, postal_code = ?,phone = ?, email = ?, guardian_name = ?, guardian_occupation = ?, father_name = ?, father_occupation  = ?, mother_name = ?, guardian_occupation = ? WHERE id = ?`;
+                  SET name = ?, class_id = ?, birth_date = ?, birth_place = ?, religion = ?, address = ?, postal_code = ?,phone = ?, email = ?, guardian_name = ?, guardian_occupation = ?, father_name = ?, father_occupation  = ?, mother_name = ?, guardian_occupation = ?, img_file = ? WHERE id = ?`;
 
   await pool.query(query, [
     payload.name,
@@ -88,6 +87,7 @@ const updateStudent = async (payload) => {
     payload.father_occupation,
     payload.mother_name,
     payload.mother_occupation,
+    payload.img_file,
     payload.id,
   ]);
 };
