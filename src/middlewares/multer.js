@@ -5,8 +5,14 @@ const studentPhotos = multer.diskStorage({
     cb(null, path.resolve(appRoot + '/public/img'));
   },
   filename: function (req, file, cb) {
-    cb(null, `${req.body.id}-${req.body.name}.jpg`);
+    const timestamp = new Date().getTime();
+    cb(null, `${timestamp}-${file.originalname}`);
   },
 });
 
-module.exports = { studentPhotos };
+const upload = multer({
+  storage: studentPhotos,
+  limits: 10 * 1000 * 1000,
+});
+
+module.exports = upload;
