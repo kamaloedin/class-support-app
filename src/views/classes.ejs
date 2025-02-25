@@ -1,0 +1,25 @@
+<div class="card mt-3 mb-3">
+  <div class="card-header">
+    <h2>Class List</h2>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <% grades.forEach(grade => { %>
+      <div class="row">
+        <div class="col">
+          <h4>Grade <%= grade.grade_number %></h4>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <% classes.forEach((class1) => { %>
+          <% if (class1.grade_id === grade.id) { %>
+            <div class="col-md-2">
+              <a href="/classes/<%= class1.id %>" class="btn btn-success btn-lg text-center rounded">Class <%= class1.name %></a>
+            </div>
+          <% } %>
+        <% }) %>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>

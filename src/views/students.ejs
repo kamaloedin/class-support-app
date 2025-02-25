@@ -1,0 +1,41 @@
+<div class="card mt-3 mb-3 container">
+  <div class="card-header bg-success bg-gradient row align-items-center">
+    <h2 class="card-title text-light ms-4 col-md-4 ">Students List</h2>
+    <div class="col-md-1 ms-auto text-center">
+      <% if (roleId === 1 ) { %>
+        <a href="/students/add-student-form" class="btn btn-sm btn-success btn-outline-light rounded">Add</a>
+      <% } %>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-md-10">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">NIS</th>
+                <th scope="col">Student Name</th>
+                <th scope="col" class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let i = 0; %>
+              <% students.forEach(student => { %>
+                <tr>
+                  <th scope="row"><%= ++i %></th>
+                  <td><%= student.id %></td>
+                  <td><%= student.name %></td>
+                  <td class="text-center">
+                    <a href="/students/<%= student.id %>" class="btn btn-success badge rounded pill">Details</a>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

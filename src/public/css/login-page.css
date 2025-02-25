@@ -1,0 +1,11 @@
+.bg-img {
+  /* background-color: #5cb85c; */
+  background-image: url('../img/class-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  filter: blur(10px);
+  z-index: -1;
+}

@@ -1,0 +1,61 @@
+<% if (msg.length !== 0) { %>
+  <div id="popup" class="alert alert-success alert-dismissible fade show mt-3 d-flex align-items-center " role="alert">
+    <div>
+      <%= msg %>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+<div class="card mt-4 mb-3 container">
+  <div class="card-header bg-gradient bg-success row align-items-center" data-bs-theme="dark">
+    <h2 class="card-title ms-4 text-light col-md-4">Student Data</h2>
+    <div class="col-md-1 ms-auto text-center">
+      <% if (roleId === 1 ) { %>
+        <a href="/students/edit-student-form/<%= student.id %>" class="btn btn-sm btn-success btn-outline-light rounded">Edit</a>
+      <% } %>
+    </div>
+  </div>
+  <div class="card-body row">
+    <div class="container mt-3">
+      <div class="row justify-content-around">
+        <div class="col-md-4 text-center">
+          <img
+            src="/img/<%= student.img_file %>"
+            alt="Student Photo"
+            class="img-thumbnail img-thumbnail rounded"
+            width="200"
+          />
+        </div>
+        <div class="col-md-8">
+          <ul class="list-group list-group-flush fs-6 mb-3">
+            <li class="list-group-item">NIS : <%= student.id %></li>
+            <li class="list-group-item">Full Name : <%= student.name %></li>
+            <li class="list-group-item">Class : <%= student.class_name %></li>
+            <li class="list-group-item">Date of Birth : <%= student.birth_date %></li>
+            <li class="list-group-item">Place of Birth : <%= student.birth_place %></li>
+            <li class="list-group-item">Religion : <%= student.religion %></li>
+            <li class="list-group-item">Address : <%= student.address %></li>
+            <li class="list-group-item">Postal Code : <%= student.postal_code %></li>
+            <li class="list-group-item">Phone : <%= student.phone %></li>
+            <li class="list-group-item">Email : <%= student.email %></li>
+            <li class="list-group-item">Guardian's Name : <%= student.guardian_name %></li>
+            <li class="list-group-item">Guardian's Occupation : <%= student.guardian_occupation %></li>
+            <li class="list-group-item">Father's Name : <%= student.father_name %></li>
+            <li class="list-group-item">Father's Occupation : <%= student.father_occupation %></li>
+            <li class="list-group-item">Mother's Name : <%= student.mother_name %></li>
+            <li class="list-group-item">Mother's Occupation : <%= student.mother_occupation %></li>
+            <li class="list-group-item">Days of Unexplained Absent: <%= student.absence %></li>
+            <li class="list-group-item">Registered On : <%= student.register_date %></li>
+            <li class="list-group-item">Status : <%= student.status %></li>
+          </ul>
+          <% if (student.status === 'Active') { %>
+            <form action="/students?_method=DELETE" method="post">
+              <input type="hidden" name="id" value="<%= student.id %>">
+              <button class="btn btn-danger float-end ms-3 mt-2" onclick="return confirm('Are you sure you want to expel this student?')">Expel</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

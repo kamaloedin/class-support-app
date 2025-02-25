@@ -1,0 +1,61 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Welcome Back, <%= empName %></h1>
+      <% if (roleId === 1) { %>
+        <div class="card mt-3 mb-3">
+          <div class="card-header bg-success bg-gradient">
+            <h3 class="text-light">Admin Tools</h3>
+          </div>
+          <div class="card-body">
+            <div class="container">
+              <div class="row mb-3">
+                <div class="col">
+                  <h5>Users</h5>
+                  <a href="/register" class="btn btn-success me-3">Add New User</a>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col ">
+                  <h5>Students</h5>
+                  <a href="/students/add-student-form" class="btn btn-success me-3">Add New Student</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>      
+      <% } %>
+      <% if (roleId === 2) { %>
+        <div class="card mt-3 mb-3">
+          <div class="card-header bg-success bg-gradient">
+            <h3 class="text-light">Your Subjects</h3>
+          </div>
+          <div class="card-body">
+            <div class="container">
+              <div class="row mb-3">
+                <div class="col-md-10">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Subject</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% let i = 0; %>
+                        <tr>
+                          <th scope="row"><%= ++i %></th>
+                          <td>1-A</td>
+                          <td>Math</td>
+                        </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="row justify-content-center align-items-center ">
+    <div class="col-6 text-white">
+        <div class="mt-5 mb-5 text-center text-white">
+            <h1 class=" fw-bold">Register New User</h1>
+        </div>
+        <form action="/register" method="post">
+            <% if (msg.length !== 0) { %>
+                <div id="popup" class="alert alert-success alert-dismissible fade show mt-3 d-flex align-items-center " role="alert">
+                  <div>
+                    <%= msg %>
+                  </div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              <% } %>
+            <% if (errorMsg.length !== 0) { %>
+            <div id="popup" class="alert alert-danger alert-dismissible fade show mt-3 d-flex align-items-center " role="alert">
+                <div>
+                    <%= errorMsg %>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+            <label for="empId" class="form-label">Employee ID | Name</label>
+            <select class="form-select mb-3" id="empId" name="empId" aria-label="register select" required>
+                <% employees.forEach(employee => { %>
+                    <option value="<%= employee.id %>" <% if (employee.id === payload.empId) { %> selected <% } %>>
+                        <%= employee.id %> | <%= employee.name %>
+                    </option>
+                <% }) %>
+              </select>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" min="6" value="<%= payload.username %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" min="6" required>
+            </div>
+            <div class="mb-3">
+            <% if (messages.error) { %>
+             <%= messages.error %>
+            <% } %>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary mb-3">Register</button>
+                <a href="/" class="btn btn-primary text-white float-end"><span class="fw-bold">&laquo;</span> &nbsp; Back to Dasboard</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var elements = document.getElementsByTagName("INPUT");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].oninvalid = function(e) {
+                e.target.setCustomValidity("");
+                if (!e.target.validity.valid) {
+                    e.target.setCustomValidity("This field cannot be left blank");
+                }
+            };
+            elements[i].oninput = function(e) {
+                e.target.setCustomValidity("");
+            };
+        }
+    })    
+</script>

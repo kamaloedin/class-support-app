@@ -1,0 +1,73 @@
+<div class="card mt-4 mb-3">
+  <div class="card-header bg-gradient bg-success" data-bs-theme="dark">
+    <h2 class="card-title ms-4 text-light">Add-Subject Form</h2>
+  </div>
+  <div class="card-body">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-8">
+            <form action="/subjects" method="post">
+                <% if (errorMsg.length !== 0) { %>
+                    <div id="popup" class="alert alert-danger alert-dismissible fade show mt-3 d-flex align-items-center " role="alert">
+                      <div>
+                        <%= errorMsg %>
+                      </div>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  <% } %>
+                <% if (typeof expressValidationErrors != 'undefined') { %>
+                    <div class="alert alert-danger" role="alert">
+                      <ul>
+                        <% expressValidationErrors.forEach(error => { %>
+                        <li><%= error.msg %></li>
+                        <% }) %>
+                      </ul>
+                    </div>
+                <% } %>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Subject Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= subject.name %>" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var elements = document.getElementsByTagName("INPUT");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].oninvalid = function(e) {
+                e.target.setCustomValidity("");
+                if (!e.target.validity.valid) {
+                    e.target.setCustomValidity("This field cannot be left blank");
+                }
+            };
+            elements[i].oninput = function(e) {
+                e.target.setCustomValidity("");
+            };
+        }
+    })
+    function checkFileSize() {
+        const fs = document.getElementById("img_file");
+        const files = fs.files;
+
+        // If there is (at least) one file selected
+        if (files.length > 0) {
+            if (files[0].size > 10 * 1000 * 1000) {
+            // Check the constraint
+            fs.setCustomValidity("The selected file must not be larger than 75 kB");
+            fs.reportValidity();
+            return;
+            }
+        }
+        // No custom constraint violation
+        fs.setCustomValidity("");
+    }
+
+    window.onload = () => {
+        document.getElementById("fs").onchange = checkFileSize;
+    };
+</script>
